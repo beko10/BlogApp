@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+
+<div class="container-fluid py-5 text-center" style="background:#922e2e;" style="color: rgb(255, 255, 255);">
+    <h3><strong>Yazılım Bolğumuza Hoşgeldiniz</strong></h3>
+
+</div>
+<br>
+  
+<p>
+
+
+  {% if request.user.is_authenticated %}
+
+    Giriş Yapılmış , {{request.user.username}}
+
+  {% else %}
+    Giriş Yapılmadı 
+  {% endif %}
+    
+
+
+
+  
+</p>
+
+
+{% endblock body %} 

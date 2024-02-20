@@ -1,0 +1,52 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+{% if articles %}
+  {% for article in articles %}
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-lg-8">
+        <!-- Post content -->
+        <article>
+          <!-- Post header -->
+          <header class="mb-4">
+            <!-- Post title -->
+            <a href="/articles/article/{{article.id}}" class="fw-bolder mb-1">{{article.title}}</a>
+            <!-- Post meta content -->
+            <div class="text-muted fst-italic mb-2">Oluşturulma Tarihi: {{article.created_date}}</div>
+            <hr>
+            <!-- Post categories -->
+            <p class="lead">by {{article.author.username}} tarafından oluşturuldu</p>
+            <hr>
+            {% if article.article_image %}
+              <img class="img-thumbnail" src="{{article.article_image.url}}">
+            {% endif %}
+            <p>{{article.content|safe|truncatewords:10}}</p>
+            <a class="btn btn-danger" href="/articles/article/{{article.id}}">devamını oku</a>
+          </header>
+          <!-- Preview image figure -->
+          <!--<figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>-->
+          <!-- Post content -->
+          <section class="mb-5"></section>
+        </article>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+{% endif %}
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-lg-8">
+      <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Yorum yap</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
+

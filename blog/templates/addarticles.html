@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<div class="container mt-5">
+    <h1 class="mb-4">Makale Ekle</h1>
+    <form  method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.media}}
+        {{form.as_p}}
+        
+        <br>
+        <button type="submit" class="btn btn-danger">Makale Ekle</button>
+        
+    </form>
+    
+</div>
+
+{% endblock body %}

@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+    <form method="post">
+    
+        {% csrf_token %}
+    
+    {{form.as_p}}
+
+    <button class="btn btn-danger" type="submit">Makale Guncelle </button>
+    
+    
+    </form>
+
+{% endblock body %}

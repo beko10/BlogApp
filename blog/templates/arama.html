@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+
+  <ul>
+    {% for sonuc in sonuclar %}
+      <li>{{ sonuc }}</li>
+    {% empty %}
+      <li>Arama sonuçları bulunamadı.</li>
+    {% endfor %}
+  </ul>
+
+{% endblock body %}

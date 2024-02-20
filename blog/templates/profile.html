@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+
+<div>
+    <div>
+        
+        <p>Profile sayfana hoşgeldin {{request.user.username}}</p>
+        <hr>
+    </div>
+
+    <div>
+        <p>Makale sayınız :  {{article_count}}</p>
+        <hr>
+    </div>
+    
+
+    <a href="{% url 'user:profiledelete' user.id %}" class="btn btn-danger">Hesap Sil</a>
+</div>
+
+
+
+
+{% endblock body %}

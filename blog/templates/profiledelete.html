@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+
+
+{% block body %}
+
+<div>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-danger">Profil Sil</button>
+    </form>
+</div>
+
+
+
+{% endblock body %}

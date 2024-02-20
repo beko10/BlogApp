@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">{{article.title}}</h1>
+                    <hr>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Oluşturulma Trihi :  {{article.created_date}} </div>
+                    <hr>
+                    <!-- Post categories-->
+                    <p class="lead">by {{article.author.username}} tarafından oluşturuldu </p>
+                    <hr>
+
+                    {% if article.article_image %}
+                        <img class="img-thumbnail" src="{{article.article_image.url}}">
+                    {% endif %}
+
+                    <p>{{article.content|safe|truncatewords:10}}</p>
+                    <hr>
+                </header>
+                <!-- Preview image figure-->
+                <!--<figure class="mb-4"><img class="img-fluid rounded" src="https://dummyimage.com/900x400/ced4da/6c757d.jpg" alt="..." /></figure>-->
+                <!-- Post content-->
+                <section class="mb-5">
+                </section>
+            </article>
+        </div>
+    </div>
+</div>
+
+<div>
+    {% if comments %}
+        {% for comment in comments %}
+        <div class="d-flex">
+            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+            <div class="ms-3">
+                <div class="fw-bold"> yazar : {{ comment.author }}</div>
+                 yorum : {{ comment.comment }}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        Bu makaleye yorum yapılmamış.
+    {% endif %}
+</div>
+
+
+
+<div>
+    
+    <form method="post" action="{% url 'article:comment' article.id %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Yorum Ekle</button>
+    </form>
+</div>
+{% endblock body %}
